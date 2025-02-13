@@ -101,12 +101,13 @@
 												<span
 													class="d-flex align-items-center font-weight-medium ws-nowrap text-3 ps-0">
 													<a href="tel:+97145806000"
-														class="text-decoration-none text-color-dark text-color-hover-primary">
-														<i class="fas fa-phone-alt"></i>
+														class="text-decoration-none text-color-dark text-color-hover-primary ">
+														<i class="fas fa-phone-alt "></i>
 														+971 4 580 6000
 													</a>
 												</span>
 											</li>
+
 											<li
 												class="nav-item nav-item-left-border nav-item-left-border-remove nav-item-left-border-sm-show">
 												<span
@@ -291,7 +292,8 @@
 					</div>
 					<div class="col-lg-6 col-xl-5 offset-lg-1 appear-animation" data-appear-animation="fadeInUpShorter"
 						data-appear-animation-delay="1250">
-						<form class="contact-form custom-form-style-1" action="php/contact-form.php" method="POST">
+						<form class="contact-form custom-form-style-1" action="php/contact-form.php" method="POST"
+							id="contactForm">
 							<div class="contact-form-success alert alert-success d-none mt-4">
 								<strong>Success!</strong> Your message has been sent to us.
 							</div>
@@ -312,8 +314,13 @@
 								<div class="form-group col mb-3">
 									<input type="email" value="" data-msg-required="Please enter your email address."
 										data-msg-email="Please enter a valid email address." maxlength="100"
-										class="form-control" name="email" id="email" required
-										placeholder="E-mail Address">
+										class="form-control" name="email" id="email" placeholder="E-mail Address">
+								</div>
+							</div>
+							<div class="row row-gutter-sm">
+								<div class="form-group col mb-3">
+									<input type="text" value="" data-msg-required="Please enter your contact number."
+										class="form-control" name="number" id="number" placeholder="Contact Number">
 								</div>
 							</div>
 							<div class="row">
@@ -328,7 +335,7 @@
 								<div class="form-group col mb-0">
 									<button type="submit"
 										class="btn btn-primary text-color-light btn-modern font-weight-bold custom-btn-border-radius custom-btn-arrow-effect-1 text-3 px-5 py-3"
-										data-loading-text="Loading...">
+										data-loading-text="Loading..." id="submitBtn" disabled>
 										SUBMIT
 										<svg class="ms-2" version="1.1" viewBox="0 0 15.698 8.706" width="17"
 											xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
@@ -341,6 +348,7 @@
 							</div>
 						</form>
 					</div>
+
 				</div>
 			</div>
 
@@ -450,7 +458,30 @@
 
 	<!-- Theme Initialization Files -->
 	<script src="js/theme.init.js"></script>
+	<script>
+		// Get form elements
+		const nameField = document.getElementById("name");
+		const emailField = document.getElementById("email");
+		const contactField = document.getElementById("contact");
+		const submitButton = document.getElementById("submitBtn");
 
+		// Enable submit button when the form is valid
+		function toggleSubmitButton() {
+			const isNameValid = nameField.value.trim() !== "";
+			const isEmailOrContactFilled = emailField.value.trim() !== "" || contactField.value.trim() !== "";
+
+			if (isNameValid && isEmailOrContactFilled) {
+				submitButton.disabled = false;
+			} else {
+				submitButton.disabled = true;
+			}
+		}
+
+		// Add event listeners to the fields
+		nameField.addEventListener("input", toggleSubmitButton);
+		emailField.addEventListener("input", toggleSubmitButton);
+		contactField.addEventListener("input", toggleSubmitButton);
+	</script>
 
 </body>
 
