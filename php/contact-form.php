@@ -18,8 +18,8 @@ $mail = new PHPMailer();
 $mail->isSMTP();                                            // Send using SMTP
 $mail->Host       = 'smtp.hostinger.com';                    // Set the SMTP server to send through
 $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-$mail->Username   = 'Adminhas@sevenblueshippung.com';       // SMTP username
-$mail->Password   = "Sevenblue@SGBSYPM.2210";                           // SMTP password
+$mail->Username   = 'abidminhas@sevenblueshipping.com';       // SMTP username
+$mail->Password   = "Sevenblueshipping@2210";                           // SMTP password
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
 $mail->Port       = 465;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
@@ -32,17 +32,17 @@ $contact_message = $_REQUEST['message'];
 $mail->setFrom('
 ung.com', 'Contact Us');
 $mail->addAddress($contact_email, $form_name); 
-$mail->addAddress('Adminhas@sevenblueshippung.com', 'Contact Us'); 
+$mail->addAddress('abidminhas@sevenblueshipping.com', 'Contact Us'); 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "sevenblueshipping";
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $database = "sevenblueshipping";
 
-//  $servername = "127.0.0.1:3306";
-//  $username = "u768511311_arisesolarllc";
-//  $password = "Rumit@2210";
-//  $database = "u768511311_arise";
+ $servername = "127.0.0.1:3306";
+ $username = "u768511311_sevenblue";
+ $password = "Sevenblueshipping@2210";
+ $database = "u768511311_sevenblue";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $database);
@@ -53,7 +53,7 @@ if (!$conn) {
   echo "data successfully recorded";
 }
 
- $sql = "INSERT INTO `contact` (`name`, `email`, `contact`,  `message`) VALUES
+ $sql = "INSERT INTO `contact` (`name`, `email`, `number`,  `message`) VALUES
  ('$form_name', '$contact_email', '$contact_phone',  '$contact_message');";
  if (mysqli_query($conn, $sql)) {
        echo "New record created successfully";
